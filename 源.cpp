@@ -106,14 +106,21 @@ void Food::drawfood(IMAGE yuan, IMAGE yuanx)
 	putimage(x-15, y-15, &yuan, SRCPAINT);
 }
 Food food;
+typedef struct
+{
+	char PWD[15] = "";
+	char ID[15] = "";
+	int score = 0;
+}USER;
+USER user;
 /****************************************************/
-void welcomegraph();
-void Finish();
-int clickcontrol();
-void Movingsnake(char);
-void Changesnakebody(int ,int );
-void Eating();
-int Deadjudge();
+void welcomegraph();//欢迎界面
+void Finish();//结束界面
+int clickcontrol();//鼠标控制
+void Movingsnake(char);//蛇身移动控制
+void Changesnakebody(int ,int );//蛇身改变控制
+void Eating();//吃到食物的操作
+int Deadjudge();//死亡判断
 /****************************************************/
 
 
@@ -157,32 +164,167 @@ void welcomegraph()
 	foodstylex = applex;
 	food.setstyle(0);
 	putimage(265,0,&welcome);
+	//获取全景
+	IMAGE a;
+	setbkmode(TRANSPARENT);
+	settextcolor(BLACK);
+	settextstyle(25, 0, _T("华文行楷"));
+	getimage(&a, 0, 0, 850, 600);
+	//图标
+	IMAGE ico;
+	IMAGE icox;
+	loadimage(&ico, "resource//ico1.jpg", 100, 100);
+	loadimage(&icox, "resource//ico.jpg", 100, 100);
+	SetWorkingImage(&ico);
+	putimage(0, 0, &icox, SRCINVERT);
+	SetWorkingImage(NULL);
+	/*********************************/
 	while (TRUE)
 	{
-		mouse = GetMouseMsg();
-		if (mouse.x >= 370 && mouse.x <= 480 && mouse.y >= 380 && mouse.y <= 420 && mouse.mkLButton)
+		if (MouseHit() == true)
 		{
-			mciSendString("play click", NULL, 0, NULL);
-			for (int i = 0; i <= 300; i++)
+			mouse = GetMouseMsg();
+		}
+		//LOGIN
+		if (mouse.x >= 375 && mouse.x <= 475 && mouse.y >= 328 && mouse.y <= 363 && mouse.mkLButton)
+		{
+			mciSendString("play click from 0", NULL, 0, NULL);
+			putimage(0, 0, &a);
+			putimage(680, 130, &icox, SRCAND);
+			putimage(680, 130, &ico, SRCPAINT);
+			setlinecolor(RGB(0, 255, 0));
+			settextcolor(RGB(255, 128, 0));
+			settextstyle(30, 0, _T("黑体"));
+			outtextxy(590, 255, "ID");
+			outtextxy(585, 315, "PWD:");
+			setlinestyle(PS_SOLID, 2);
+			fillrectangle(635, 255, 840, 285);
+			//outtextxy(635, 255, "aaaaaaaaaaaaa");//13个极限
+			fillrectangle(635, 315, 840, 345);
+			/*****************************************/
+			/*******************************************/
+			settextcolor(BLACK);
+			char com = 0;
+			int x = 620, y = 255, i = 0;
+			int times = 0;
+			while (true)
 			{
-				setlinecolor(GREEN);
-				line(0, i, 849, i);
-				line(0, (600 - i), 849, (600 - i));
-				Sleep(4);
+				if (_kbhit())
+				{
+					com = _getch();
+					if (com == 'q') break;
+					if (com == '\b')
+					{
+						solidrectangle(x, y + 1, x + 15, y + 29);
+						x -= 15;
+						i--;
+					}
+					else
+					{
+						if (com == '\r')
+						{
+							if (times == 0)
+							{
+								user.ID[i] = '\0';
+								y = 315;
+								x = 620;
+								i = 0;
+							}
+							if (times == 1)
+							{
+								outtextxy(630, 500, user.ID);
+								outtextxy(630, 550, user.PWD);
+								settextcolor(BLUE);
+								outtextxy(610, 350, "登陆成功O(∩_∩)O");
+								_getch();
+								for (int i = 0; i <= 300; i++)
+								{
+									setlinecolor(GREEN);
+									line(0, i, 849, i);
+									line(0, (600 - i), 849, (600 - i));
+									Sleep(4);
+								}
+								InputBox(name, 10, "你的名字是");
+								strcat(NAME, name);
+								loadimage(NULL, "resource//bkcolor.jpg");
+								getimage(&MAPLEFT, 600, 0, 250, 600);
+								settextcolor(RGB(0, 0, 0));
+								setbkmode(TRANSPARENT);
+								settextstyle(25, 0, _T("华文行楷"));
+								outtextxy(650, 100, NAME);
+								outtextxy(650, 150, "你的得分是：");
+								settextstyle(130, 0, _T("黑体"));
+								itoa(score, SCORE, 10);
+								outtextxy(690, 270, SCORE);
+								return;
+							}
+							times = 1;
+						}
+						else
+						{
+							x += 15;
+							if (times == 0 && i < 20 && i >= 0) user.ID[i++] = com;
+							if (times == 1 && i<20 && i >= 0) user.PWD[i++] = com;
+							if (times == 0) outtextxy(x, y, com);
+							if (times == 1) outtextxy(x, y, '*');
+						}
+					}
+
+				}
 			}
-			InputBox(name, 10, "你的名字是");
-			strcat(NAME, name);
-			loadimage(NULL, "resource//bkcolor.jpg");
-			getimage(&MAPLEFT, 600, 0, 250, 600);
-			settextcolor(RGB(0, 0, 0));
-			setbkmode(TRANSPARENT);
+
+			//return;
+		}
+		//HELP
+		else if (mouse.x >= 375 && mouse.x <= 475 && mouse.y >= 527 && mouse.y <= 559 && mouse.mkLButton)
+		{
+			settextcolor(BLACK);
+			mciSendString("play click from 0", NULL, 0, NULL);
+			putimage(0, 0, &a);
 			settextstyle(25, 0, _T("华文行楷"));
-			outtextxy(650, 100, NAME);
-			outtextxy(650, 150, "你的得分是：");
-			settextstyle(130, 0, _T("黑体"));
-			itoa(score, SCORE, 10);
-			outtextxy(690, 270, SCORE);
-			return;
+			outtextxy(20, 40, "欢迎来到贪吃蛇");
+			Sleep(20);
+			outtextxy(20, 80, "o(*￣▽￣*)o");
+			Sleep(20);
+			outtextxy(20, 120, "请用 W A S D");
+			Sleep(20);
+			outtextxy(20, 160, "控制方向 P键暂停");
+			Sleep(20);
+			outtextxy(20, 200, "游戏中碰到箱子及");
+			Sleep(20);
+			outtextxy(20, 240, "地图中间的小河");
+			Sleep(20);
+			outtextxy(20, 280, "或者吃到自己或反向");
+			Sleep(20);
+			outtextxy(20, 320, "移动均视作死亡");
+			Sleep(20);
+			outtextxy(20, 360, "登陆时请勿使用");
+			Sleep(20);
+			outtextxy(20, 400, "非法字符（汉字等）");
+			Sleep(20);
+			outtextxy(20, 440, "密码不支持中文字符数");
+			Sleep(20);
+			outtextxy(20, 480, "请保持在20以下");
+			Sleep(20);
+			outtextxy(20, 520, "登陆及注册时如需");
+			Sleep(20);
+			outtextxy(20, 560, "换行请按回车");
+		}
+		//REJISTER
+		else if (mouse.x >= 375 && mouse.x <= 475 && mouse.y >= 385 && mouse.y <= 420 && mouse.mkLButton)
+		{
+			mciSendString("play click from 0", NULL, 0, NULL);
+			putimage(0, 0, &a);
+		}
+		//RANKING
+		else if (mouse.x >= 375 && mouse.x <= 475 && mouse.y >= 467 && mouse.y <= 501 && mouse.mkLButton)
+		{
+			mciSendString("play click from 0", NULL, 0, NULL);
+			putimage(0, 0, &a);
+			settextcolor(RED);
+			settextstyle(30, 0, _T("华文彩云"));
+			outtextxy(30, 100, "BAST PLAYS");
+			//文件获取10个，如果不足就全部按格式输出
 		}
 	}
 }
@@ -221,7 +363,9 @@ void Finish()
 	setfillcolor(RGB(128, 255, 128));
 	solidrectangle(0, 0, 849, 180);
 	solidrectangle(0, 400, 849, 600);
+	settextcolor(BLACK);
 	Sleep(1000);
+	_getch();
 	_getch();
 }
 
@@ -336,7 +480,7 @@ void Eating()
 		settextstyle(25, 0, _T("华文行楷"));
 		outtextxy(650, 100, NAME);
 		outtextxy(650, 150, "你的得分是：");
-		settextstyle(50, 0, _T("黑体"));
+		settextstyle(130, 0, _T("黑体"));
 		itoa(score, SCORE, 10);
 		outtextxy(670, 270, SCORE);
 		food.setxy();

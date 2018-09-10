@@ -1,2 +1,11 @@
 ﻿  源.cpp
-LINK : fatal error LNK1168: 无法打开 C:\Users\23113\source\repos\sanke\Debug\sanke.exe 进行写入
+c:\users\23113\source\repos\sanke\源.cpp(149): warning C4305: “初始化”: 从“double”到“float”截断
+c:\users\23113\source\repos\sanke\源.cpp(152): warning C4305: “+=”: 从“double”到“float”截断
+c:\users\23113\source\repos\sanke\源.cpp(248): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(93): note: 参见“strcat”的声明
+c:\users\23113\source\repos\sanke\源.cpp(257): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(1334): note: 参见“itoa”的声明
+c:\users\23113\source\repos\sanke\源.cpp(484): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(1334): note: 参见“itoa”的声明
+  sanke.vcxproj -> C:\Users\23113\source\repos\sanke\Debug\sanke.exe
+  sanke.vcxproj -> C:\Users\23113\source\repos\sanke\Debug\sanke.pdb (Partial PDB)

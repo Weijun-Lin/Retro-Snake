@@ -117,12 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mapgraph.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="Snakeprev.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="sanke.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\snakepicyure.ico" />
