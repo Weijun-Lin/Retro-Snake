@@ -1,5 +1,4 @@
 //easyx版贪吃蛇 参数：1~29半径10坐标为20倍数
-
 #include<graphics.h>
 #include<conio.h>
 #include<iostream>
@@ -9,7 +8,7 @@
 #include"Snakeprev.h"
 #include"mapgraph.h"
 
-#pragma comment(lib,"Winmm.lib")
+#pragma comment(lib,"Winmm.lib");
 
 #define up 'w'
 #define down 's'

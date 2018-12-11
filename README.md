@@ -3,7 +3,9 @@
 
 ## 部分文件说明
 
-### **Snakeprev.h**  
+> Easyx 版本： EasyX库(附带graphics.h) 2018春分版 (2018-3-21)  
+
+### Snakeprev.h**  
 
 1. 蛇节点声明 ```struct snake;```
 2. 蛇存储结构链表 ```snake * snakelist(int,int*);```

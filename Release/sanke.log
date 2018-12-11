@@ -1,0 +1,16 @@
+﻿  mapgraph.cpp
+  Snakeprev.cpp
+  源.cpp
+c:\users\23113\source\repos\c++_img_lib\retro-snake\源.cpp(11): warning C4081: 应输入“newline”；找到“;”
+c:\users\23113\source\repos\c++_img_lib\retro-snake\源.cpp(148): warning C4305: “初始化”: 从“double”到“float”截断
+c:\users\23113\source\repos\c++_img_lib\retro-snake\源.cpp(151): warning C4305: “+=”: 从“double”到“float”截断
+c:\users\23113\source\repos\c++_img_lib\retro-snake\源.cpp(247): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(89): note: 参见“strcat”的声明
+c:\users\23113\source\repos\c++_img_lib\retro-snake\源.cpp(256): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(1334): note: 参见“itoa”的声明
+c:\users\23113\source\repos\c++_img_lib\retro-snake\源.cpp(483): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(1334): note: 参见“itoa”的声明
+  正在生成代码
+  All 54 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  sanke.vcxproj -> C:\Users\23113\source\repos\C++_IMG_LIB\Retro-Snake\x64\Release\sanke.exe
