@@ -4,6 +4,8 @@
 ## 部分文件说明
 
 > Easyx 版本： EasyX库(附带graphics.h) 2018春分版 (2018-3-21)  
+>
+> Github查看代码会有乱码 代码格式为GBK （ VS默认字符集。。。）
 
 ### Snakeprev.h**  
 
