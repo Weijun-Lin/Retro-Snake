@@ -39,7 +39,7 @@ char click = 0;
 char name[20];
 char NAME[30] = "你好 ， ";
 int number[6] = { 8,8,8,9,8,10 };
-snake * const head = snakelist(3,number);
+snake * head = snakelist(3,number);
 int score = 0;
 char SCORE[30];
 /****************************************************/
@@ -387,25 +387,27 @@ void Movingsnake(char c)
 {
 	BeginBatchDraw();
 	int x = head->x, y = head->y;
-	switch (c)
-	{
-	case up:
-		head->y -= INDEX;
-		Changesnakebody(x,y);
-		break;
-	case down:
-		head->y += INDEX;
-		Changesnakebody(x,y);
-		break;
-	case left:
-		head->x -= INDEX;
-		Changesnakebody(x,y);
-		break;
-	case right:
-		head->x += INDEX;
-		Changesnakebody(x,y);
-		break;
-	}
+    switch (click)
+    {
+    case up:
+        y -= INDEX;
+        break;
+    case down:
+        y += INDEX;
+        break;
+    case left:
+        x -= INDEX;
+        break;
+    case right:
+        x += INDEX;
+        break;
+    default:
+        break;
+    }
+    if (x != head->x || y != head->y) {
+        // 改变坐标时更新 暂停游戏停止更新蛇 
+        Changesnakebody(x, y);
+    }
 	putimage(0, 0, &MAP);
 	settextcolor(RGB(0, 0, 0));
 	food.drawfood(foodstyle,foodstylex);
@@ -417,24 +419,17 @@ void Movingsnake(char c)
 
 void Changesnakebody(int x,int y)
 {
-	snake *p = head->next;
-	int mid1, mid2, _mid1, _mid2;
-	mid1 = p->x;
-	mid2 = p->y;
-	while (1)
-	{
-		if (p->next->next == NULL) break;
-		_mid1 = p->next->x;
-		_mid2 = p->next->y;
-		p->next->x = mid1;
-		p->next->y = mid2;
-		mid1 = _mid1;
-		mid2 = _mid2;
-		p = p->next;
-	}
-	p = head->next;
-	p->x = x;
-	p->y = y;
+    snake* p = head;
+    while (p->next->next != NULL) {
+        p = p->next;
+    }
+    delete p->next;
+    p->next = NULL;
+    snake* new_head = new snake;
+    new_head->x = x;
+    new_head->y = y;
+    new_head->next = head;
+    head = new_head;
 }
 
 void Eating()

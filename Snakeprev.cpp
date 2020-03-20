@@ -41,14 +41,13 @@ snake* snakelist(int a,int *number)
 
 void addsnake(snake* head)
 {
-	while (head->next->next != NULL)
+	while (head->next != NULL)
 	{
 		head = head->next;//prev
 	}
 	snake *p = new snake;//new
-	snake *q = head->next;//tail
-	head->next = p;
-	p->next = q;
+    head->next = p;
+    p->next = NULL;
 }
 
 void drawsnake(snake *head,char click)
@@ -94,8 +93,7 @@ void drawsnake(snake *head,char click)
 
 	head = head->next;
 
-
-	while (head->next!= NULL)
+	while (head != NULL)
 	{
 		setlinecolor(YELLOW);
 		setlinestyle(PS_SOLID, 3);

@@ -1,0 +1,11 @@
+﻿  源.cpp
+E:\Repos\IMAGE_Game\easyx\Retro-Snake\源.cpp(11,35): warning C4081: 应输入“newline”；找到“;”
+E:\Repos\IMAGE_Game\easyx\Retro-Snake\源.cpp(148,31): warning C4305: “初始化”: 从“double”到“float”截断
+E:\Repos\IMAGE_Game\easyx\Retro-Snake\源.cpp(151,14): warning C4305: “+=”: 从“double”到“float”截断
+E:\Repos\IMAGE_Game\easyx\Retro-Snake\源.cpp(247,1): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(90): message : 参见“strcat”的声明
+E:\Repos\IMAGE_Game\easyx\Retro-Snake\源.cpp(256,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\stdlib.h(1323): message : 参见“itoa”的声明
+E:\Repos\IMAGE_Game\easyx\Retro-Snake\源.cpp(478,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\stdlib.h(1323): message : 参见“itoa”的声明
+  sanke.vcxproj -> E:\Repos\IMAGE_Game\easyx\Retro-Snake\x64\Debug\sanke.exe
